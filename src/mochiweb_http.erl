@@ -137,6 +137,8 @@ headers(Socket, Request, Headers, Body, HeaderCount) ->
 
 call_body({M, F}, Req) ->
     M:F(Req);
+call_body({M, F, A}, Req) ->
+    apply(M, F, [Req | A]);
 call_body(Body, Req) ->
     Body(Req).
 
